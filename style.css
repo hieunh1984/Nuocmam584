@@ -412,28 +412,24 @@ header nav ul li:hover ul,
 
 /* Modal Thông tin giao hàng canh đẹp*/
 .checkout-overlay {
+  display: none;
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: none; /* ẩn mặc định */
-  z-index: 1500;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.4);
+  z-index: 10000;
 }
 
 .checkout-modal {
+  display: none;
   position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 95%;
-  max-width: 400px;
-  background: #fff;
-  border-radius: 16px 16px 0 0;
-  padding: 20px;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
-  display: none; /* ẩn mặc định */
-  z-index: 2000;
-  flex-direction: column;
-  gap: 12px;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  z-index: 10001;
 }
 
 .checkout-modal h3 {
@@ -638,5 +634,44 @@ header nav ul li:hover ul,
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+/* ===== Product list mobile ===== */
+@media screen and (max-width: 768px) {
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .product-card {
+    width: 45%; /* 2 sản phẩm/1 hàng */
+    font-size: 14px;
+  }
+  .product-card img {
+    width: 100%;
+    height: auto;
+  }
+  .product-card button {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+}
+
+/* Hiện nút giỏ hàng nổi chỉ trên mobile */
+.cart-button.cart-icon-mobile {
+  display: none; /* mặc định ẩn */
+}
+
+@media screen and (max-width: 768px) {
+  .cart-button.cart-icon-mobile {
+    display: flex;
+  }
+  .cart-button.cart-icon-mobile .badge {
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    padding: 2px 4px;
   }
 }
