@@ -144,12 +144,17 @@ function updateCartPopup() {
 function openCheckout() {
   const ids = Object.keys(cart);
   if (ids.length === 0) return alert("Giỏ hàng trống!");
-  document.getElementById("checkout-modal").style.display = "block";
+  document.getElementById("checkout-overlay").style.display = "block";
+  const modal = document.getElementById("checkout-modal");
+  modal.classList.add("show"); // bật modal
 }
 
 function closeCheckout() {
-  document.getElementById("checkout-modal").style.display = "none";
+  document.getElementById("checkout-overlay").style.display = "none";
+  const modal = document.getElementById("checkout-modal");
+  modal.classList.remove("show"); // ẩn modal
 }
+
 
 function confirmCheckout() {
   const name = document.getElementById("recipient-name").value.trim();
@@ -206,3 +211,167 @@ modal.addEventListener("click", (e) => {
 
 });
 
+const translations = {
+  vi: {
+    title: "Nước Mắm 584 - Đại lý HCMC",
+    home: "Trang chủ ▾",
+    about: "Giới thiệu",
+    product_link: "Sản phẩm",
+    language: "Ngôn ngữ",
+    product_list: "DANH MỤC SẢN PHẨM",
+    cart_title: "GIỎ HÀNG CỦA BẠN",
+    total: "Tổng tiền:",
+    buy: "Mua hàng",
+    clear: "Xóa giỏ hàng",
+    close: "Đóng",
+    shipping_info: "Thông tin giao hàng",
+    fullname: "Họ và tên:",
+    phone: "Số điện thoại:",
+    address: "Địa chỉ:",
+    confirm: "Xác nhận đặt hàng",
+    cancel: "Hủy",
+    empty_cart: "Chưa có sản phẩm",
+    cart_popup_title: "Giỏ hàng của bạn",
+    footer_text: "Bản quyền © 2025 Nước Mắm 584 - Nguyễn Hoàng Hiếu. Giữ toàn quyền."
+  },
+  en: {
+    title: "Fish Sauce 584 - HCMC Agent",
+    home: "Home ▾",
+    about: "About",
+    product_link: "Products",
+    language: "Language",
+    product_list: "PRODUCT CATEGORIES",
+    cart_title: "YOUR CART",
+    total: "Total:",
+    buy: "Buy now",
+    clear: "Clear cart",
+    close: "Close",
+    shipping_info: "Shipping Information",
+    fullname: "Full name:",
+    phone: "Phone number:",
+    address: "Address",
+    confirm: "Confirm order",
+    cancel: "Cancel",
+    empty_cart: "No items yet",
+    cart_popup_title: "Your Cart",
+    footer_text: "Copyright © 2025 Fish Sauce 584 - Nguyen Hoang Hieu. All rights reserved."
+  },
+  cn: {
+    title: "584鱼露 - 胡志明市代理",
+    home: "主页 ▾",
+    about: "介绍",
+    product_link: "产品",
+    language: "语言",
+    product_list: "产品目录",
+    cart_title: "您的购物车",
+    total: "总价:",
+    buy: "购买",
+    clear: "清空购物车",
+    close: "关闭",
+    shipping_info: "配送信息",
+    fullname: "姓名:",
+    phone: "电话号码:",
+    address: "地址:",
+    confirm: "确认下单",
+    cancel: "取消",
+    empty_cart: "暂无商品",
+    cart_popup_title: "您的购物车",
+    footer_text: "版权 © 2025 584鱼露 - 阮黄孝。保留所有权利。"
+  },
+  jp: {
+    title: "584魚醤 - ホーチミン代理店",
+    home: "ホーム ▾",
+    about: "紹介",
+    product_link: "製品",
+    language: "言語",
+    product_list: "製品カテゴリ",
+    cart_title: "カート",
+    total: "合計:",
+    buy: "購入する",
+    clear: "カートをクリア",
+    close: "閉じる",
+    shipping_info: "配送情報",
+    fullname: "氏名:",
+    phone: "電話番号:",
+    address: "住所:",
+    confirm: "注文を確認",
+    cancel: "キャンセル",
+    empty_cart: "商品がありません",
+    cart_popup_title: "カート内容",
+    footer_text: "著作権 © 2025 584魚醤 - グエン・ホアン・ヒエウ。全著作権所有。"
+  },
+  kr: {
+    title: "584 피시소스 - 호치민 대리점",
+    home: "홈 ▾",
+    about: "소개",
+    product_link: "제품",
+    language: "언어",
+    product_list: "제품 목록",
+    cart_title: "장바구니",
+    total: "총액:",
+    buy: "구매하기",
+    clear: "장바구니 비우기",
+    close: "닫기",
+    shipping_info: "배송 정보",
+    fullname: "이름:",
+    phone: "전화번호:",
+    address: "주소:",
+    confirm: "주문 확인",
+    cancel: "취소",
+    empty_cart: "상품이 없습니다",
+    cart_popup_title: "장바구니",
+    footer_text: "저작권 © 2025 584 피시소스 - 응우옌 호앙 히에우. 판권 소유."
+  }
+};
+
+// Hàm set ngôn ngữ
+function setLanguage(lang) {
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (translations[lang] && translations[lang][key]) {
+      el.innerText = translations[lang][key];
+    }
+  });
+}
+
+// Khi load trang: luôn reset về tiếng Việt
+window.addEventListener('DOMContentLoaded', () => {
+  setLanguage('vi'); // Reset ngôn ngữ mặc định
+
+// Mobile: toggle dropdown khi click (áp dụng cho tất cả dropdown)
+document.querySelectorAll('.dropdown > a').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const dropdown = btn.parentElement;
+    dropdown.classList.toggle('active');
+  });
+});
+
+  // Click ngoài sẽ đóng dropdown
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.dropdown.active').forEach(drop => {
+      if (!drop.contains(e.target)) drop.classList.remove('active');
+    });
+  });
+});
+
+/*JS để bật/tắt modal khi bấm nút Mua hàng*/
+const checkoutBtn = document.getElementById("checkout-btn");
+const checkoutOverlay = document.getElementById("checkout-overlay");
+const checkoutModal = document.getElementById("checkout-modal");
+const cancelOrder = document.getElementById("cancel-order");
+
+// Mở modal khi bấm Mua hàng
+checkoutBtn.addEventListener("click", () => {
+  checkoutOverlay.style.display = "block";
+  checkoutModal.style.display = "flex";
+});
+
+// Đóng modal khi bấm Hủy hoặc click overlay
+cancelOrder.addEventListener("click", closeCheckout);
+checkoutOverlay.addEventListener("click", closeCheckout);
+
+function closeCheckout() {
+  checkoutOverlay.style.display = "none";
+  checkoutModal.style.display = "none";
+}

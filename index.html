@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+  <link rel="icon" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+  <rect width='100' height='100' fill='white'/>
+  <text x='50%' y='60%' font-size='60' text-anchor='middle' fill='black' font-family='Arial'>584</text>
+</svg>">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nước Mắm Truyền Thống 584</title>
+    <!-- <script>
+    const correctPassword = "22122023"; // 👉 đổi mật khẩu ở đây
+    let entered = localStorage.getItem("accessOK");
+
+    if (!entered) {
+      const pass = prompt("🔑 Nhập mật khẩu để truy cập:");
+      if (pass === correctPassword) {
+        localStorage.setItem("accessOK", "yes");
+        alert("✅ Đăng nhập thành công!");
+      } else {
+        alert("❌ Sai mật khẩu!");
+        window.location.href = "https://google.com"; // hoặc link trang khác bạn muốn
+      }
+    }
+  </script> -->
   <link rel="stylesheet" href="style.css" />
   <style>
     /* ======= HEADER ======= */
@@ -141,20 +161,10 @@
     .cart-popup-actions button:first-of-type { background: #c0392b; color: #fff; }
     .cart-popup-actions button:last-of-type { background: #999; color: #fff; }
 
-    /* ======= RESPONSIVE ======= */
-    @media (max-width: 768px) { .cart-section { display: none; } }
-    @media (min-width: 769px) { .cart-button, .cart-popup { display: none !important; } }
 
-    /* ======= FOOTER ======= */
-    #footer {
-      background: #c0392b;
-      color: white;
-      text-align: center;
-      padding: 18px 0;
-      margin-top: 40px;
-      font-family: Arial, sans-serif;
-    }
   </style>
+
+  
 </head>
 <body>
 
@@ -165,7 +175,7 @@
       <div class="dropdown">
         <a href="#" class="nav-main" onclick="scrollToTop(event)" data-key="home">Trang chủ ▾</a>
         <div class="dropdown-content">
-          <a href="readme.html" target="_blank" data-key="about">Giới thiệu</a>
+          <a href="gioithieu.html" data-key="about">Giới thiệu</a>
           <a href="#sanpham" data-key="product_link">Sản phẩm</a>
         </div>
       </div>
@@ -199,11 +209,11 @@
   </div>
 </aside>
 
-<!-- Nút giỏ hàng nổi (Mobile) -->
+<!-- Nút giỏ hàng nổi (Mobile) 
 <div class="cart-button cart-icon-mobile" onclick="toggleCart()">
   🛒
   <span class="badge hidden">0</span>
-</div>
+</div>-->
 
 <!-- Popup giỏ hàng (Mobile) -->
 <div id="cart-popup" class="cart-popup">
@@ -218,18 +228,23 @@
   </div>
 </div>
 
-<!-- MODAL GIAO HÀNG -->
-<div id="checkout-modal" class="cart-popup" style="width:300px; display:none;">
-  <h3 data-key="shipping_info">Thông tin giao hàng</h3>
-  <label data-key="fullname">Họ và tên:</label>
-  <input type="text" id="recipient-name" placeholder="Nguyễn Văn A" style="width:100%; margin-bottom:8px;">
-  <label data-key="phone">Số điện thoại:</label>
-  <input type="text" id="recipient-phone" placeholder="090xxxxxxx" style="width:100%; margin-bottom:8px;">
-  <label data-key="address">Địa chỉ:</label>
-  <textarea id="recipient-address" placeholder="Số nhà, đường, phường..." style="width:100%; margin-bottom:8px;"></textarea>
-  <button onclick="confirmCheckout()" data-key="confirm">Xác nhận đặt hàng</button>
-  <button onclick="closeCheckout()" data-key="cancel">Hủy</button>
+<!-- Overlay và Modal Thông tin giao hàng -->
+<div id="checkout-overlay" class="checkout-overlay"></div>
+<div id="checkout-modal" class="checkout-modal">
+  <h3>Thông tin giao hàng</h3>
+  <label>Họ và tên:</label>
+  <input type="text" id="recipient-name" placeholder="Nguyễn Văn A">
+  
+  <label>Số điện thoại:</label>
+  <input type="text" id="recipient-phone" placeholder="090xxxxxxx">
+  
+  <label>Địa chỉ:</label>
+  <textarea id="recipient-address" placeholder="Số nhà, đường, phường..."></textarea>
+  
+  <button id="confirm-order">Xác nhận đặt hàng</button>
+  <button id="cancel-order">Hủy</button>
 </div>
+
 
 <footer id="footer">
   <p data-key="footer_text">
@@ -238,182 +253,21 @@
 </footer>
 
 
-  <script src="script.js" defer></script>
   <!-- Modal hiển thị hình ảnh -->
 <div id="image-modal" class="modal hidden">
   <div class="modal-content">
     <span id="close-modal" class="close">&times;</span>
     <img id="modal-img" src="" alt="Hình sản phẩm">
   </div>
+
 </div>
 
-<!-- Container cho Messenger & Zalo -->
-<div class="contact-container">
-  <!-- Nút Messenger -->
-  <a href="https://m.me/icyjoss.nh" target="_blank" rel="noopener" class="contact-btn messenger" aria-label="Chat via Messenger">
-    <svg viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id="mgrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#0084ff"/>
-          <stop offset="1" stop-color="#0062d6"/>
-        </linearGradient>
-      </defs>
-      <circle cx="24" cy="24" r="22" fill="url(#mgrad)"/>
-      <path fill="#fff" d="M21.6 31.1l1.6-5.5 4.9 5.6c.6.7 1.6.2 1.2-.6l-2.8-6.6 4.3-.1c.9 0 1.2-1.1.4-1.4l-9.1-3.2-5.2 3.9c-.7.5-.1 1.6.7 1.5l3.8-.4-4 6.3c-.5.8.5 1.6 1.3 1z"/>
-    </svg>
-  </a>
-
-  <!-- Nút Zalo -->
+  <!-- Nút Zalo
   <a href="https://zalo.me/0766786494" target="_blank" rel="noopener" class="contact-btn zalo" aria-label="Liên hệ qua Zalo">
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo" />
-  </a>
-</div>
+  </a> -->
+  
 
-<script>
-const translations = {
-  vi: {
-    title: "Nước Mắm 584 - Đại lý HCMC",
-    home: "Trang chủ ▾",
-    about: "Giới thiệu",
-    product_link: "Sản phẩm",
-    language: "Ngôn ngữ",
-    product_list: "DANH MỤC SẢN PHẨM",
-    cart_title: "GIỎ HÀNG CỦA BẠN",
-    total: "Tổng tiền:",
-    buy: "Mua hàng",
-    clear: "Xóa giỏ hàng",
-    close: "Đóng",
-    shipping_info: "Thông tin giao hàng",
-    fullname: "Họ và tên:",
-    phone: "Số điện thoại:",
-    address: "Địa chỉ:",
-    confirm: "Xác nhận đặt hàng",
-    cancel: "Hủy",
-    empty_cart: "Chưa có sản phẩm",
-    cart_popup_title: "Giỏ hàng của bạn",
-    footer_text: "Bản quyền © 2025 Nước Mắm 584 - Nguyễn Hoàng Hiếu. Giữ toàn quyền."
-  },
-  en: {
-    title: "Fish Sauce 584 - HCMC Agent",
-    home: "Home ▾",
-    about: "About",
-    product_link: "Products",
-    language: "Language",
-    product_list: "PRODUCT CATEGORIES",
-    cart_title: "YOUR CART",
-    total: "Total:",
-    buy: "Buy now",
-    clear: "Clear cart",
-    close: "Close",
-    shipping_info: "Shipping Information",
-    fullname: "Full name:",
-    phone: "Phone number:",
-    address: "Address",
-    confirm: "Confirm order",
-    cancel: "Cancel",
-    empty_cart: "No items yet",
-    cart_popup_title: "Your Cart",
-    footer_text: "Copyright © 2025 Fish Sauce 584 - Nguyen Hoang Hieu. All rights reserved."
-  },
-  cn: {
-    title: "584鱼露 - 胡志明市代理",
-    home: "主页 ▾",
-    about: "介绍",
-    product_link: "产品",
-    language: "语言",
-    product_list: "产品目录",
-    cart_title: "您的购物车",
-    total: "总价:",
-    buy: "购买",
-    clear: "清空购物车",
-    close: "关闭",
-    shipping_info: "配送信息",
-    fullname: "姓名:",
-    phone: "电话号码:",
-    address: "地址:",
-    confirm: "确认下单",
-    cancel: "取消",
-    empty_cart: "暂无商品",
-    cart_popup_title: "您的购物车",
-    footer_text: "版权 © 2025 584鱼露 - 阮黄孝。保留所有权利。"
-  },
-  jp: {
-    title: "584魚醤 - ホーチミン代理店",
-    home: "ホーム ▾",
-    about: "紹介",
-    product_link: "製品",
-    language: "言語",
-    product_list: "製品カテゴリ",
-    cart_title: "カート",
-    total: "合計:",
-    buy: "購入する",
-    clear: "カートをクリア",
-    close: "閉じる",
-    shipping_info: "配送情報",
-    fullname: "氏名:",
-    phone: "電話番号:",
-    address: "住所:",
-    confirm: "注文を確認",
-    cancel: "キャンセル",
-    empty_cart: "商品がありません",
-    cart_popup_title: "カート内容",
-    footer_text: "著作権 © 2025 584魚醤 - グエン・ホアン・ヒエウ。全著作権所有。"
-  },
-  kr: {
-    title: "584 피시소스 - 호치민 대리점",
-    home: "홈 ▾",
-    about: "소개",
-    product_link: "제품",
-    language: "언어",
-    product_list: "제품 목록",
-    cart_title: "장바구니",
-    total: "총액:",
-    buy: "구매하기",
-    clear: "장바구니 비우기",
-    close: "닫기",
-    shipping_info: "배송 정보",
-    fullname: "이름:",
-    phone: "전화번호:",
-    address: "주소:",
-    confirm: "주문 확인",
-    cancel: "취소",
-    empty_cart: "상품이 없습니다",
-    cart_popup_title: "장바구니",
-    footer_text: "저작권 © 2025 584 피시소스 - 응우옌 호앙 히에우. 판권 소유."
-  }
-};
-
-// Hàm set ngôn ngữ
-function setLanguage(lang) {
-  document.querySelectorAll('[data-key]').forEach(el => {
-    const key = el.getAttribute('data-key');
-    if (translations[lang] && translations[lang][key]) {
-      el.innerText = translations[lang][key];
-    }
-  });
-}
-
-// Khi load trang: luôn reset về tiếng Việt
-window.addEventListener('DOMContentLoaded', () => {
-  setLanguage('vi'); // Reset ngôn ngữ mặc định
-
-// Mobile: toggle dropdown khi click (áp dụng cho tất cả dropdown)
-document.querySelectorAll('.dropdown > a').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const dropdown = btn.parentElement;
-    dropdown.classList.toggle('active');
-  });
-});
-
-  // Click ngoài sẽ đóng dropdown
-  document.addEventListener('click', (e) => {
-    document.querySelectorAll('.dropdown.active').forEach(drop => {
-      if (!drop.contains(e.target)) drop.classList.remove('active');
-    });
-  });
-});
-</script>
 
   <script src="script.js" defer></script>
 
