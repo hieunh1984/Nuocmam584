@@ -25,162 +25,25 @@
     }
   </script> -->
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* ======= HEADER ======= */
-    header {
-      position: relative;
-      z-index: 100;
-    }
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #c0392b;
-      padding: 10px 20px;
-    }
-    h1 { color: #fff; margin: 0; }
-    nav { display: flex; align-items: center; gap: 25px; }
-    .dropdown { position: relative; }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #ffffff;
-      min-width: 160px;
-      box-shadow: 0px 8px 18px rgba(0,0,0,0.15);
-      border-radius: 6px;
-      overflow: hidden;
-      z-index: 200;
-    }
-    .dropdown-content a {
-      color: #333;
-      padding: 10px 14px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-      font-weight: 600;
-    }
-    .dropdown-content a:hover {
-      background-color: #f0f0f0;
-      color: #c0392b;
-    }
-    .dropdown:hover .dropdown-content { display: block; }
-    .nav-main, .nav-cart {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .nav-main:hover, .nav-cart:hover { color: #ffeb3b; }
-
-    /* ======= NÚT GIỎ HÀNG MOBILE ======= */
-    .cart-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #c0392b;
-      color: white;
-      font-size: 24px;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-      cursor: pointer;
-      z-index: 1000;
-    }
-    .cart-button .badge {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      background: yellow;
-      color: black;
-      font-size: 14px;
-      padding: 2px 6px;
-      border-radius: 50%;
-    }
-
-    /* ======= POPUP GIỎ HÀNG MOBILE ======= */
-    .cart-popup {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      background: #fff;
-      border-radius: 12px;
-      border: 1px solid #ccc;
-      width: 280px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-      padding: 15px;
-      display: none;
-      z-index: 900;
-    }
-    .cart-popup h3 {
-      margin-top: 0;
-      color: #c0392b;
-      font-size: 18px;
-    }
-    .cart-popup ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      max-height: 250px;
-      overflow-y: auto;
-    }
-    .cart-popup .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #eee;
-      padding: 6px 0;
-    }
-    .cart-popup .cart-item button {
-      background: #c0392b;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      padding: 4px 8px;
-      cursor: pointer;
-    }
-    .cart-popup-actions {
-      border-top: 1px solid #ccc;
-      margin-top: 10px;
-      padding-top: 8px;
-    }
-    .cart-popup-actions p { margin: 4px 0; font-weight: bold; }
-    .cart-popup-actions button {
-      width: 100%;
-      padding: 8px;
-      margin-top: 6px;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .cart-popup-actions button:first-of-type { background: #c0392b; color: #fff; }
-    .cart-popup-actions button:last-of-type { background: #999; color: #fff; }
-
-
-  </style>
-
-  
+   <script src="script.js" defer></script>
+    
 </head>
-<body>
+<body id="top">
 
 <header>
+  
   <div class="header-container">
     <h1 data-key="title">Nước Mắm 584 - Đại lý HCMC</h1>
     <nav>
       <div class="dropdown">
-        <a href="#" class="nav-main" onclick="scrollToTop(event)" data-key="home">Trang chủ ▾</a>
+        <a href="#top" class="nav-main" data-key="home">Trang chủ ▾</a>
         <div class="dropdown-content">
           <a href="gioithieu.html" data-key="about">Giới thiệu</a>
           <a href="#sanpham" data-key="product_link">Sản phẩm</a>
         </div>
       </div>
       <div class="dropdown">
-        <a href="#" class="nav-cart">🌐 <span data-key="language">Ngôn ngữ</span> ▾</a>
+        <a href="#" class="nav-cart">🌐 <span data-key="language">Ngôn ngữ▾</span> </a>
         <div class="dropdown-content">
           <a href="#" onclick="setLanguage('vi')">🇻🇳 Tiếng Việt</a>
           <a href="#" onclick="setLanguage('en')">🇬🇧 English</a>
@@ -192,6 +55,7 @@
     </nav>
   </div>
 </header>
+<div class="header-flash-line"></div>
 
 <section id="sanpham" class="product-section">
   <h2 data-key="product_list">DANH MỤC SẢN PHẨM</h2>
@@ -209,45 +73,29 @@
   </div>
 </aside>
 
-<!-- Nút giỏ hàng nổi (Mobile) -->
-<div class="cart-button cart-icon-mobile" onclick="toggleCart()">
-  🛒
-  <span class="badge hidden">0</span>
-</div>
-
-<!-- Popup giỏ hàng (Mobile) -->
-<div id="cart-popup" class="cart-popup">
-  <h3 data-key="cart_popup_title">Giỏ hàng của bạn</h3>
-  <ul id="cart-popup-items">
-    <li data-key="empty_cart">Chưa có sản phẩm</li>
-  </ul>
-  <div class="cart-popup-actions">
-    <p><strong data-key="total">Tổng tiền:</strong> <span id="cart-popup-total">0₫</span></p>
-    <button onclick="openCheckout()" data-key="buy">Mua hàng</button>
-    <button onclick="closeCart()" data-key="close">Đóng</button>
-  </div>
-</div>
 
 <!-- Overlay và Modal Thông tin giao hàng -->
 <div id="checkout-overlay" class="checkout-overlay"></div>
-<div id="checkout-modal" class="checkout-modal">
-  <h3>Thông tin giao hàng</h3>
-  <label>Họ và tên:</label>
-  <input type="text" id="name" placeholder="Nguyễn Văn A">
+<div class="checkout-modal" id="checkout-modal">
+  <h3 data-key="checkout_title">THÔNG TIN GIAO HÀNG</h3>
 
-  <label>Số điện thoại:</label>
-  <input type="text" id="phone" placeholder="090xxxxxxx">
+  <label for="name" data-key="label_name">Họ tên:</label>
+  <input type="text" id="name" placeholder="Nhập họ tên" data-key-placeholder="placeholder_name">
 
-  <label>Địa chỉ:</label>
-  <textarea id="address" placeholder="Số nhà, đường, phường..."></textarea>
+  <label for="phone" data-key="label_phone">SĐT:</label>
+  <input type="text" id="phone" placeholder="Nhập số điện thoại" data-key-placeholder="placeholder_phone">
 
-  <button id="zalo-confirm-btn" data-key="confirm">✅ Xác nhận đặt hàng</button>
-  <button data-key="cancel" onclick="closeCheckoutModal()">❌ Hủy</button>
+  <label for="address" data-key="label_address">Địa chỉ:</label>
+  <textarea id="address" placeholder="Nhập địa chỉ" data-key-placeholder="placeholder_address"></textarea>
+
+  <button id="checkout-confirm-btn" data-key="checkout_confirm" data-key="confirm">Xác nhận</button>
+  <button data-key="cancel">Hủy</button>
 </div>
+
 
 <footer id="footer">
   <p data-key="footer_text">
-    Copyright © <span id="year"></span> Nước Mắm 584 - Nguyễn Hoàng Hiếu. All rights reserved.
+    Copyright © <span id="year"></span> Nước Mắm 584 - Đại lý Hồ Chí Minh
   </p>
 </footer>
 
@@ -261,14 +109,6 @@
 
 </div>
 
-  <!-- Nút Zalo
-  <a href="https://zalo.me/0766786494" target="_blank" rel="noopener" class="contact-btn zalo" aria-label="Liên hệ qua Zalo">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo" />
-  </a> -->
-  
-
-
-  <script src="script.js" defer></script>
 
 </body>
 </html>
