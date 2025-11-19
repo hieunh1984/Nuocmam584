@@ -30,9 +30,8 @@ Nước mắm 584 Nha Trang được chế biến từ nguyên liệu cá cơm �
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📞 LIÊN HỆ
 🏠 Địa chỉ: 1210 Lê Hồng Phong, phường Nam Nha Trang, tỉnh Khánh Hòa (nếu cần xuất hóa đơn GTGT)
-📱 Điện thoại: 0976 786 494 - Zalo
-💬 Messenger: https://m.me/icyjoss.nh  
-🌐 Website: https://hieunh1984.github.io/Nuocmam584
+📱 Điện thoại 0976 786 494 - Zalo
+🌐 Website: https://hieunh1984.github.io/nuocmam584
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 CẢM ƠN QUÝ KHÁCH ĐÃ TIN DÙNG NƯỚC MẮM 584 –  
