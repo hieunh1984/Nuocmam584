@@ -1,44 +1,24 @@
 // =================== GIỎ HÀNG ===================
 let cart = {};
 
-// Lấy phần tử cart-section và badge số lượng
-const cartSection = document.querySelector('.cart-section');
+// Lấy phần tử giỏ hàng web
+const cartSection = document.getElementById('giohang');
+const cartItems = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
 
-// Tạo badge hiển thị số sản phẩm trên icon
-let cartBadge = document.createElement('span');
-cartBadge.style.position = 'absolute';
-cartBadge.style.top = '4px';
-cartBadge.style.right = '4px';
-cartBadge.style.background = '#e74c3c';
-cartBadge.style.color = '#fff';
-cartBadge.style.borderRadius = '50%';
-cartBadge.style.width = '20px';
-cartBadge.style.height = '20px';
-cartBadge.style.fontSize = '12px';
-cartBadge.style.display = 'flex';
-cartBadge.style.justifyContent = 'center';
-cartBadge.style.alignItems = 'center';
-cartBadge.style.pointerEvents = 'none';
-cartSection.appendChild(cartBadge);
-
-// Toggle mở/đóng cart khi bấm vào icon
-cartSection.addEventListener('click', function(e) {
-  cartSection.classList.toggle('active');
-});
-
-// Thêm sản phẩm vào giỏ
+// ===== Thêm sản phẩm vào giỏ =====
 function addToCart(id) {
   cart[id] = (cart[id] || 0) + 1;
   renderCart();
 }
 
-// Xóa sản phẩm
+// ===== Xóa sản phẩm =====
 function removeItem(id) {
   delete cart[id];
   renderCart();
 }
 
-// Thay đổi số lượng
+// ===== Thay đổi số lượng =====
 function changeQuantity(id, delta) {
   if (!cart[id]) return;
   cart[id] += delta;
@@ -46,31 +26,24 @@ function changeQuantity(id, delta) {
   renderCart();
 }
 
-// Xóa hết giỏ
+// ===== Xóa hết giỏ =====
 function clearCart() {
   cart = {};
   renderCart();
 }
 
-// =================== HIỂN THỊ GIỎ HÀNG ===================
+// ===== HIỂN THỊ GIỎ HÀNG =====
 function renderCart() {
-  const container = document.getElementById("cart-items");
   const ids = Object.keys(cart);
-  const totalEl = document.getElementById("cart-total");
-
-  // Cập nhật số lượng trên badge icon
-  let totalQty = ids.reduce((sum, k) => sum + cart[k], 0);
-  cartBadge.textContent = totalQty;
-  cartBadge.style.display = totalQty > 0 ? 'flex' : 'none';
 
   if (ids.length === 0) {
-    container.innerHTML = `<p>${translations[currentLang].cart_empty}</p>`;
-    totalEl.textContent = "0₫";
+    cartItems.innerHTML = `<p>${translations[currentLang]?.cart_empty || 'Giỏ hàng trống'}</p>`;
+    cartTotal.textContent = "0₫";
     return;
   }
 
   let total = 0;
-  container.innerHTML = ids.map(k => {
+  cartItems.innerHTML = ids.map(k => {
     const p = products.find(x => x.id == k);
     const title = productTranslations[currentLang][p.id].title;
     const qty = cart[k];
@@ -92,5 +65,36 @@ function renderCart() {
     `;
   }).join("");
 
-  totalEl.textContent = total.toLocaleString() + "₫";
+  cartTotal.textContent = total.toLocaleString() + "₫";
+}
+
+// =================== MOBILE CART ICON ===================
+if (window.innerWidth <= 768) {
+  // Tạo nút icon nhỏ
+  const cartIcon = document.createElement('div');
+  cartIcon.className = 'cart-mobile-icon';
+  cartIcon.innerHTML = '🛒 <span class="cart-badge">0</span>';
+  document.body.appendChild(cartIcon);
+
+  const badge = cartIcon.querySelector('.cart-badge');
+
+  // Update badge số lượng
+  function updateBadge() {
+    const totalQty = Object.values(cart).reduce((sum, v) => sum + v, 0);
+    badge.textContent = totalQty;
+    badge.style.display = totalQty > 0 ? 'inline-flex' : 'none';
+  }
+
+  updateBadge();
+
+  cartIcon.addEventListener('click', () => {
+    cartSection.classList.toggle('active');
+  });
+
+  // Cập nhật badge mỗi khi renderCart
+  const oldRenderCart = renderCart;
+  renderCart = function () {
+    oldRenderCart();
+    updateBadge();
+  };
 }
