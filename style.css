@@ -544,3 +544,75 @@ background: rgba(255, 200, 200, 0.9); /* đỏ nhạt */
 .close:hover {
   color: #ff3b3b;
 }
+
+/* ========================
+   MOBILE STYLES
+======================== */
+@media (max-width: 768px) {
+
+  /* Header container: title + menu cùng dòng */
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 12px;
+  }
+
+  /* Header title thu gọn */
+  header h1 {
+    font-size: 1.5em;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+
+  /* Menu: ẩn text, chỉ giữ icon (nếu có) hoặc thu gọn */
+  header nav {
+    gap: 8px;
+  }
+
+  /* Cart section: ẩn mặc định, hiển thị nút giỏ hàng hình tròn */
+  .cart-section {
+    position: fixed;
+    right: 12px;
+    top: 12px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.3s;
+  }
+
+  .cart-section h2,
+  .cart-item {
+    display: none; /* ẩn nội dung giỏ hàng */
+  }
+
+  /* Khi active mở ra */
+  .cart-section.active {
+    width: 300px;
+    max-height: 80vh;
+    border-radius: 12px;
+    padding: 10px;
+    overflow-y: auto;
+    background: #fff;
+  }
+
+  /* Product section */
+  .product-list {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .product-card img {
+    max-height: 140px;
+  }
+
+}
