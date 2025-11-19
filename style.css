@@ -550,69 +550,71 @@ background: rgba(255, 200, 200, 0.9); /* đỏ nhạt */
 ======================== */
 @media (max-width: 768px) {
 
-  /* Header container: title + menu cùng dòng */
-  .header-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0 12px;
+  h1[data-key="title"] {
+    font-size: 1.2em;        /* giảm size trên mobile */
   }
-
-  /* Header title thu gọn */
-  header h1 {
-    font-size: 1.5em;
-    padding: 8px 12px;
-    white-space: nowrap;
-  }
-
-  /* Menu: ẩn text, chỉ giữ icon (nếu có) hoặc thu gọn */
   header nav {
-    gap: 8px;
+    display: flex;
+    gap: 12px;               /* khoảng cách menu */
+    flex-wrap: wrap;         /* menu xuống dòng nếu quá dài */
+    justify-content: center;
   }
 
-  /* Cart section: ẩn mặc định, hiển thị nút giỏ hàng hình tròn */
+   /* Cart section: mặc định nhỏ, icon giỏ hàng */
   .cart-section {
     position: fixed;
     right: 12px;
     top: 12px;
     width: 50px;
     height: 50px;
-    padding: 0;
+    border-radius: 50%;
+    background: #e67e22;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  /* Icon giỏ hàng bên trong */
+  .cart-section i {
+    color: white;
+    font-size: 24px;
+  }
+
+  /* Badge số lượng */
+  .cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    cursor: pointer;
-    z-index: 1000;
-    transition: 0.3s;
   }
 
-  .cart-section h2,
-  .cart-item {
-    display: none; /* ẩn nội dung giỏ hàng */
-  }
-
-  /* Khi active mở ra */
+  /* Khi mở: chuyển thành box cart như web */
   .cart-section.active {
     width: 300px;
     max-height: 80vh;
     border-radius: 12px;
+    background: #fff;
+    flex-direction: column;
+    align-items: stretch;
     padding: 10px;
     overflow-y: auto;
-    background: #fff;
   }
 
-  /* Product section */
-  .product-list {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 12px;
+  .cart-section.active i {
+    display: none; /* ẩn icon khi mở */
   }
-
-  .product-card img {
-    max-height: 140px;
-  }
-
 }
