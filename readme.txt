@@ -15,7 +15,7 @@ Nước mắm 584 Nha Trang được chế biến từ nguyên liệu cá cơm �
 🥢 SẢN PHẨM TIÊU BIỂU
 1️⃣ Nước mắm nhĩ đặc biệt 40°N (500ml) – Tinh túy giọt nhĩ đầu tiên.  
 2️⃣ Nước mắm 584 Gold 60°N (200ml) – Dành cho bữa ăn sang trọng.  
-3️⃣ ước mắm 584 truyền thống 20°N (500ml) – Hương vị nhẹ, phù hợp nấu ăn hàng ngày.
+3️⃣ Nước mắm 584 truyền thống 20°N (500ml) – Hương vị nhẹ, phù hợp nấu ăn hàng ngày.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📦 DỊCH VỤ VÀ GIAO HÀNG
