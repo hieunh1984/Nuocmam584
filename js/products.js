@@ -67,7 +67,7 @@ function renderProducts(lang = currentLang) {
       <h3>${productTranslations[lang][p.id].title}</h3>
       <p>${productTranslations[lang][p.id].desc}</p>
       <p><strong>${p.price.toLocaleString()}₫</strong></p>
-      <button onclick="addToCart(${p.id})" data-key="buy">${translations[lang].buy}</button>
+      <button onclick="addToCart(${p.id})" data-key="buy1">${translations[lang].buy1}</button>
     </div>
   `).join("");
 }
