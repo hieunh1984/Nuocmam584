@@ -280,6 +280,24 @@ background: rgba(255, 200, 200, 0.9); /* đỏ nhạt */
 .delete-btn:hover {
   background: #777;
 }
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .qty-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .delete-btn {
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+
+  .quantity-controls {
+    gap: 10px;
+  }
+}
+
 
 /* Cart section */
 .cart-section {
@@ -450,6 +468,12 @@ background: rgba(255, 200, 200, 0.9); /* đỏ nhạt */
 #checkout-btn {
   background: #27ae60;
   color: white;
+  padding: 9px 14px;     /* tăng 1 chút */
+  font-size: 15px;       /* lớn hơn nhẹ */
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 #checkout-btn:hover {
@@ -461,12 +485,19 @@ background: rgba(255, 200, 200, 0.9); /* đỏ nhạt */
 #clear-btn {
   background: #e74c3c;
   color: white;
+  padding: 9px 14px;     /* giống nút mua */
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 #clear-btn:hover {
   background: #c0392b;
   transform: translateY(-1px);
 }
+
 
 /* Nút Xác nhận */
 #checkout-confirm-btn {
